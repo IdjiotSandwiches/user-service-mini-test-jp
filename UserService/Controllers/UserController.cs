@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using UserService.Data;
 using UserService.Dtos;
 using UserService.Helpers;
-using UserService.Models;
 
 namespace UserService.Controllers
 {

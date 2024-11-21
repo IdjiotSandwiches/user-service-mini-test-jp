@@ -172,3 +172,4 @@ D:\project\mini-test-jp-api\UserService\UserService\obj\Debug\net8.0\refint\User
 D:\project\mini-test-jp-api\UserService\UserService\obj\Debug\net8.0\UserService.pdb
 D:\project\mini-test-jp-api\UserService\UserService\obj\Debug\net8.0\UserService.genruntimeconfig.cache
 D:\project\mini-test-jp-api\UserService\UserService\obj\Debug\net8.0\ref\UserService.dll
+D:\project\mini-test-jp-api\UserService\UserService\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "user",
-        "Type": "UserService.Models.User",
+        "Type": "UserService.Dtos.LoginCreateDto",
         "IsRequired": true
       }
     ],
@@ -27,25 +27,21 @@
   },
   {
     "ContainingType": "UserService.Controllers.UsersController",
-    "Method": "TestDatabaseConnection",
-    "RelativePath": "api/Users/test-connection",
+    "Method": "GetUserById",
+    "RelativePath": "api/Users/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "UserService.Controllers.WeatherForecastController",
-    "Method": "Get",
-    "RelativePath": "WeatherForecast",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[UserService.WeatherForecast, UserService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "UserService.Dtos.UserReadDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -54,6 +50,6 @@
         "StatusCode": 200
       }
     ],
-    "EndpointName": "GetWeatherForecast"
+    "EndpointName": "GetUserById"
   }
 ]
