@@ -5,14 +5,9 @@ using UserService.Models;
 
 namespace UserService.Helpers
 {
-    public class UserHelper
+    public class UserHelper(AppDbContext dbContext)
     {
-        private readonly AppDbContext _dbContext;
-
-        public UserHelper(AppDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
+        private readonly AppDbContext _dbContext = dbContext;
 
         public async Task<User?> GetUserById(int id)
         {
