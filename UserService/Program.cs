@@ -47,6 +47,4 @@ app.MapControllers();
 
 app.UseCors();
 
-//PrepDb.PrepPopulation(app);
-
 app.Run();
