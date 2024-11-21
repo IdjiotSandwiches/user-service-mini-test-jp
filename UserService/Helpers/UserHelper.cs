@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using Microsoft.EntityFrameworkCore;
 using UserService.Data;
+using UserService.Dtos;
 using UserService.Models;
 
 namespace UserService.Helpers
@@ -14,14 +14,14 @@ namespace UserService.Helpers
             _dbContext = dbContext;
         }
 
-        public User? GetUserById(int id)
+        public async Task<User?> GetUserById(int id)
         {
-            return _dbContext.Users.FirstOrDefault(user => user.Id == id);
+            return await _dbContext.Users.FirstOrDefaultAsync(user => user.Id == id);
         }
 
-        public User? Login(Login user)
+        public async Task<User?> Login(LoginCreateDto user)
         {
-            return _dbContext.Users.FirstOrDefault(x => x.NIM == user.NIM && x.Password == user.Password);
+            return await _dbContext.Users.FirstOrDefaultAsync(x => x.NIM == user.NIM && x.Password == user.Password);
         }
     }
 }

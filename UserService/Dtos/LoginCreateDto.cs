@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace UserService.Models
+namespace UserService.Dtos
 {
-    public class Login
+    public class LoginCreateDto
     {
         [Required]
         public required string NIM { get; set; }

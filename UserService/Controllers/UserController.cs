@@ -12,21 +12,15 @@ namespace UserService.Controllers
     [EnableCors]
     [ApiController]
     [Route("api/[controller]")]
-    public class UsersController : ControllerBase
+    public class UsersController(UserHelper userHelper, IMapper mapper) : ControllerBase
     {
-        private readonly UserHelper _userHelper;
-        private readonly IMapper _mapper;
-
-        public UsersController(UserHelper userHelper, IMapper mapper)
-        {
-            _userHelper = userHelper;
-            _mapper = mapper;
-        }
+        private readonly UserHelper _userHelper = userHelper;
+        private readonly IMapper _mapper = mapper;
 
         [HttpGet("{id}", Name = "GetUserById")]
-        public ActionResult<UserReadDto> GetUserById(int id)
+        public async Task<ActionResult<UserReadDto>> GetUserById(int id)
         {
-            var user = _userHelper.GetUserById(id);
+            var user = await _userHelper.GetUserById(id);
 
             if (user == null)
             {
@@ -37,14 +31,14 @@ namespace UserService.Controllers
         }
 
         [HttpPost]
-        public ActionResult<UserReadDto> Login([FromBody] Login user)
+        public async Task<ActionResult<UserReadDto>> Login([FromBody] LoginCreateDto user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var validatedUser = _userHelper.Login(user);
+            var validatedUser = await _userHelper.Login(user);
 
             if (validatedUser == null)
             {
