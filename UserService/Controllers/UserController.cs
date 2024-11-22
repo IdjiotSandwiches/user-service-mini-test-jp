@@ -9,7 +9,7 @@ namespace UserService.Controllers
     [EnableCors]
     [ApiController]
     [Route("api/[controller]")]
-    public class UsersController(UserHelper userHelper, IMapper mapper) : ControllerBase
+    public class UserController(UserHelper userHelper, IMapper mapper) : ControllerBase
     {
         private readonly UserHelper _userHelper = userHelper;
         private readonly IMapper _mapper = mapper;
@@ -27,7 +27,43 @@ namespace UserService.Controllers
             return Ok(_mapper.Map<UserReadDto>(user));
         }
 
-        [HttpPost]
+        [HttpPost("find-users")]
+        public async Task<ActionResult<UserReadDto>> GetUsersByIds([FromBody] IEnumerable<int> ids)
+        {
+            if (ids == null)
+            {
+                return BadRequest();
+            }
+
+            var users = await _userHelper.GetUserByIds(ids);
+
+            if (users == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_mapper.Map<IEnumerable<UserReadDto>>(users));
+        }
+
+        [HttpPost("eligible-students")]
+        public async Task<ActionResult<UserReadDto>> GetEligibleUsers(IEnumerable<int> ids)
+        {
+            if (ids == null)
+            {
+                return BadRequest();
+            }
+
+            var users = await _userHelper.GetEligibleUsers(ids);
+
+            if (users == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_mapper.Map<IEnumerable<UserReadDto>>(users));
+        }
+
+        [HttpPost("insert")]
         public async Task<ActionResult<UserReadDto>> Login([FromBody] LoginCreateDto user)
         {
             if (!ModelState.IsValid)
